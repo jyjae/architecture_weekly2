@@ -39,13 +39,13 @@ public class LectureFacadeService {
      */
     public List<Lecture> findAvailableLecturesForUser(FindAvailableLectureCommand command) {
         // userId로 사용자가 수강신청한 강의 ID 목록을 가져옴
-        List<Long> enrolledLectureIds = enrollmentService.findUserEnrolledLectures(command.getUserId())
+        List<Long> enrolledLectureIds = enrollmentService.findUserEnrolledLectures(command.userId())
                 .stream()
                 .map(Enrollment::getLectureId)
                 .collect(Collectors.toList());
 
         // 해당 강의들에 대한 정보를 가져옴
-        List<Lecture> availableLectures = lectureService.findAvailableLecturesExcluding(enrolledLectureIds, command.getStartDate());
+        List<Lecture> availableLectures = lectureService.findAvailableLecturesExcluding(enrolledLectureIds, command.startDate());
 
         return availableLectures;
     }
