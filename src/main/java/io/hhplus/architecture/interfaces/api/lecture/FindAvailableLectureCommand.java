@@ -6,7 +6,7 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-public record FindAvailableLectureCommand(@Getter Long userId, @Getter LocalDateTime startDate) {
+public record FindAvailableLectureCommand(Long userId, LocalDateTime startDate) {
 
     public FindAvailableLectureCommand {
         if (userId == null || userId <= 0) {

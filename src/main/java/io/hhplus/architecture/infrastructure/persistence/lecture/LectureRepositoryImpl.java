@@ -52,4 +52,15 @@ public class LectureRepositoryImpl implements LectureRepository {
     public void save(LectureJpaEntity lecture) {
         lectureJpaRepository.save(lecture);
     }
+
+    /**
+     * 강의 저장하는 메서드.
+     *
+     * @param lecture 도메인
+     * @return
+     */
+    @Override
+    public void save(Lecture lecture) {
+        lectureJpaRepository.save(lectureMapper.mapToJpaEntity(lecture));
+    }
 }

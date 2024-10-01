@@ -26,15 +26,26 @@ public class LectureJpaEntity {
 
     private Long enrollmentCount;
 
+    private Long capacity;
+
     private LocalDateTime startTime;
 
     @Builder
-    public LectureJpaEntity(Long id, String title, String description, String instructor, Long enrollmentCount, LocalDateTime startTime) {
+    public LectureJpaEntity(
+            Long id,
+            String title,
+            String description,
+            String instructor,
+            Long enrollmentCount,
+            Long capacity,
+            LocalDateTime startTime
+    ) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.instructor = instructor;
         this.enrollmentCount = enrollmentCount;
+        this.capacity = capacity;
         this.startTime = startTime;
     }
 
@@ -44,6 +55,7 @@ public class LectureJpaEntity {
             String description,
             String instructor,
             Long enrollmentCount,
+            Long capacity,
             LocalDateTime startTime
     ) {
         return LectureJpaEntity.builder()
@@ -52,6 +64,7 @@ public class LectureJpaEntity {
                 .description(description)
                 .instructor(instructor)
                 .enrollmentCount(enrollmentCount)
+                .capacity(capacity)
                 .startTime(startTime)
                 .build();
     }

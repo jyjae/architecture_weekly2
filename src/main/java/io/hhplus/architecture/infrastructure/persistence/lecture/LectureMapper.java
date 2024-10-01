@@ -15,6 +15,7 @@ public class LectureMapper {
                 new Lecture.Description(lectureJpaEntity.getDescription()),
                 new Lecture.Instructor(lectureJpaEntity.getInstructor()),
                 new Lecture.EnrollmentCount(lectureJpaEntity.getEnrollmentCount()),
+                new Lecture.Capacity(lectureJpaEntity.getCapacity()),
                 new Lecture.StartTime(lectureJpaEntity.getStartTime())
         ));
     }
@@ -27,6 +28,7 @@ public class LectureMapper {
                 lecture.getDescription(),
                 lecture.getInstructor(),
                 lecture.getEnrollmentCount(),
+                lecture.getCapacity(),
                 lecture.getStartTime());  // 이름을 null로 설정했지만 필요에 따라 처리
     }
 
@@ -37,6 +39,7 @@ public class LectureMapper {
                 new Lecture.Description(lectureJpaEntity.getDescription()),
                 new Lecture.Instructor(lectureJpaEntity.getInstructor()),
                 new Lecture.EnrollmentCount(lectureJpaEntity.getEnrollmentCount()),
+                new Lecture.Capacity(lectureJpaEntity.getCapacity()),
                 new Lecture.StartTime(lectureJpaEntity.getStartTime())
         );
     }

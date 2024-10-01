@@ -13,4 +13,6 @@ public interface EnrollmentRepository {
     Enrollment enrollment(User user, Lecture lecture);
 
     List<Enrollment> findByUserId(Long userId);
+
+    List<Enrollment> findByLectureId(long lectureId);
 }

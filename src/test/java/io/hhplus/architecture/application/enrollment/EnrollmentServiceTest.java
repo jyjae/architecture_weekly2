@@ -42,6 +42,7 @@ class EnrollmentServiceTest {
                 new Lecture.Description("자료 구조에 대해서 배웁니다."),
                 new Lecture.Instructor("홍길동"),
                 new Lecture.EnrollmentCount(29L),
+                new Lecture.Capacity(30L),
                 new Lecture.StartTime(LocalDateTime.now()));
 
         LocalDateTime localDateTime = LocalDateTime.now();

@@ -4,7 +4,7 @@ import io.hhplus.architecture.exception.InvalidRequestException;
 import lombok.Getter;
 
 
-public record RegisterEnrollmentCommand(@Getter Long userId, @Getter Long lectureId) {
+public record RegisterEnrollmentCommand(Long userId, Long lectureId) {
 
     public RegisterEnrollmentCommand {
         if (userId == null || userId <= 0) {

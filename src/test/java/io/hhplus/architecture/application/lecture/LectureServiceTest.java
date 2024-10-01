@@ -41,7 +41,9 @@ class LectureServiceTest {
                         new Lecture.Title("컴퓨터 구조"),
                         new Lecture.Description("컴퓨터 구조에 대해서 배웁니다."),
                         new Lecture.Instructor("흥부"),
-                        new Lecture.EnrollmentCount(30L), new Lecture.StartTime(LocalDateTime.of(2024, 10, 1, 9, 30))));
+                        new Lecture.EnrollmentCount(30L),
+                        new Lecture.Capacity(30L),
+                        new Lecture.StartTime(LocalDateTime.of(2024, 10, 1, 9, 30))));
 
         lectures.add(
                 Lecture.generateLecture(new Lecture.LectureId(3L),
@@ -49,6 +51,7 @@ class LectureServiceTest {
                         new Lecture.Description("운영체제에 대해서 배웁니다."),
                         new Lecture.Instructor("홍운영"),
                         new Lecture.EnrollmentCount(0L),
+                        new Lecture.Capacity(30L),
                         new Lecture.StartTime(LocalDateTime.of(2024, 10, 1, 9, 30))));
         lectures.add(
                 Lecture.generateLecture(new Lecture.LectureId(4L),
@@ -56,6 +59,7 @@ class LectureServiceTest {
                         new Lecture.Description("인공지능에 대해서 배웁니다."),
                         new Lecture.Instructor("홍인공"),
                         new Lecture.EnrollmentCount(0L),
+                        new Lecture.Capacity(30L),
                         new Lecture.StartTime(LocalDateTime.of(2024, 10, 1, 9, 30))));
         inAvailableLectures.add(
                 Lecture.generateLecture(new Lecture.LectureId(5L),
@@ -63,6 +67,7 @@ class LectureServiceTest {
                         new Lecture.Description("자바에 대해서 배웁니다."),
                         new Lecture.Instructor("자바바"),
                         new Lecture.EnrollmentCount(30L),
+                        new Lecture.Capacity(30L),
                         new Lecture.StartTime(LocalDateTime.of(2024, 10, 1, 9, 30))));
 
         inAvailableLectures.add(
@@ -71,6 +76,7 @@ class LectureServiceTest {
                         new Lecture.Description("운영체제에 대해서 배웁니다."),
                         new Lecture.Instructor("홍운영"),
                         new Lecture.EnrollmentCount(30L),
+                        new Lecture.Capacity(30L),
                         new Lecture.StartTime(LocalDateTime.of(2024, 10, 1, 9, 30))));
         inAvailableLectures.add(
                 Lecture.generateLecture(new Lecture.LectureId(8L),
@@ -78,6 +84,7 @@ class LectureServiceTest {
                         new Lecture.Description("인공지능에 대해서 배웁니다."),
                         new Lecture.Instructor("홍인공"),
                         new Lecture.EnrollmentCount(30L),
+                        new Lecture.Capacity(30L),
                         new Lecture.StartTime(LocalDateTime.of(2024, 10, 1, 9, 30))));
         inAvailableLectures.add(
                 Lecture.generateLecture(new Lecture.LectureId(9L),
@@ -85,6 +92,7 @@ class LectureServiceTest {
                         new Lecture.Description("자바에 대해서 배웁니다."),
                         new Lecture.Instructor("자바바"),
                         new Lecture.EnrollmentCount(30L),
+                        new Lecture.Capacity(30L),
                         new Lecture.StartTime(LocalDateTime.of(2024, 10, 1, 9, 30))));
 
         LocalDateTime localDateTime = LocalDateTime.now();

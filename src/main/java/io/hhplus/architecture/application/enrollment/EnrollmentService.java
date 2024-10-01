@@ -4,6 +4,7 @@ import io.hhplus.architecture.domain.enrollment.Enrollment;
 import io.hhplus.architecture.domain.enrollment.EnrollmentRepository;
 import io.hhplus.architecture.domain.lecture.Lecture;
 import io.hhplus.architecture.domain.user.User;
+import io.hhplus.architecture.exception.InvalidRequestException;
 import io.hhplus.architecture.exception.ResourceAlreadyExistsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +37,12 @@ public class EnrollmentService {
         if (isEnrolled(user.getId(), lecture.getId())) {
             throw new ResourceAlreadyExistsException("이미 수강신청 했습니다.");
         }
+
+        // 수용인원 찼는지 처리 로직
+        if(!lecture.isAvailableForEnrollment()) {
+            throw new InvalidRequestException("수강 인원이 꽉찼습니다.");
+        }
+
 
         // Enrollment 값 변환 및 저장 처리
         Enrollment enrollment = enrollmentRepository.enrollment(user, lecture);

@@ -52,8 +52,18 @@ public class LectureService {
      * @param lectureId 강의 ID
      * @return 강의 도메인 객체
      */
-    public Lecture findById(Long lectureId) {
+    @Transactional
+    public Lecture findByIdWithLock(Long lectureId) {
         return lectureRepository.findById(lectureId)
                 .orElseThrow(() -> new NotFoundException("강의가 존재하지 않습니다."));
+    }
+
+    /**
+     * 수강신청한 인원 증가시키는 메서드
+     */
+    @Transactional
+    public void increaseEnrollmentCount(Lecture lecture) {
+        lecture.increaseEnrollmentCount();
+        lectureRepository.save(lecture);
     }
 }
