@@ -3,7 +3,7 @@
 ![image](https://github.com/user-attachments/assets/207fd865-6705-4070-a668-fd99c60f5b66)
 
 
-**### User
+### User
 사용자 정보를 저장하는 엔티티입니다.  
 - **id**: 기본 키 (Primary Key)  
 - **name**: 사용자 이름  
