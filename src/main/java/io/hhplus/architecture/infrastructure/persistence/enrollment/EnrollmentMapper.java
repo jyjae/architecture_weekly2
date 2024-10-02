@@ -16,8 +16,6 @@ public class EnrollmentMapper {
         return Enrollment.generateEnrollment(
                 new Enrollment.UserId(entity.getUserId()),
                 new Enrollment.LectureId(entity.getLectureId()),
-                new Enrollment.LectureTitle(entity.getLectureTitle()),
-                new Enrollment.Instructor(entity.getLectureInstructor()),
                 new Enrollment.EnrollmentDate(entity.getEnrollmentDate())
         );
     }

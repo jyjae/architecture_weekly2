@@ -1,4 +1,4 @@
-package io.hhplus.architecture.interfaces.api.enrollment;
+package io.hhplus.architecture.application.enrollment;
 
 import io.hhplus.architecture.exception.InvalidRequestException;
 import lombok.Getter;

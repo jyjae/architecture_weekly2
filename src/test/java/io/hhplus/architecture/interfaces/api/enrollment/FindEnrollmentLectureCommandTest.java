@@ -1,7 +1,7 @@
 package io.hhplus.architecture.interfaces.api.enrollment;
 
 import io.hhplus.architecture.exception.InvalidRequestException;
-import io.hhplus.architecture.interfaces.api.enrollment.FindEnrollmentLectureCommand;
+import io.hhplus.architecture.application.lecture.FindEnrollmentLectureCommand;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

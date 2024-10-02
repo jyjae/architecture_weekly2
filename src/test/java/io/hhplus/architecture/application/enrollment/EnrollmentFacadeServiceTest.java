@@ -2,8 +2,9 @@ package io.hhplus.architecture.application.enrollment;
 
 import io.hhplus.architecture.domain.enrollment.Enrollment;
 import io.hhplus.architecture.exception.InvalidRequestException;
+import io.hhplus.architecture.exception.ResourceAlreadyExistsException;
 import io.hhplus.architecture.infrastructure.persistence.enrollment.EnrollmentRepositoryImpl;
-import io.hhplus.architecture.interfaces.api.enrollment.RegisterEnrollmentCommand;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 @SpringBootTest
 @Sql("/user_lecture_insert.sql")
 class EnrollmentFacadeServiceTest {
@@ -42,9 +43,9 @@ class EnrollmentFacadeServiceTest {
                 try {
                     RegisterEnrollmentCommand command = new RegisterEnrollmentCommand(finalI +1L, 1L);
                     enrollmentFacadeService.enrollment(command);
-                    return true; // 성공 시 true 반환
+                    return true;
                 } catch (InvalidRequestException e) {
-                    return false; // 예외 발생 시 false 반환
+                    return false;
                 }
             });
             futures.add(future);
@@ -56,10 +57,9 @@ class EnrollmentFacadeServiceTest {
 
         // Then
         // CompletableFuture 결과에서 성공한 수강신청과 실패한 수강신청을 구분
-        long successfulEnrollments = futures.stream()
+        List<Boolean> successfulEnrollments = futures.stream()
                 .map(CompletableFuture::join)
-                .filter(result -> result) // true인 값만 필터링
-                .count();
+                .filter(result -> result).collect(Collectors.toList());
 
         long failedEnrollments = futures.stream()
                 .map(CompletableFuture::join)
@@ -67,14 +67,13 @@ class EnrollmentFacadeServiceTest {
                 .count();
 
         // 성공한 수강신청은 30명
-        assertThat(successfulEnrollments).isEqualTo(30L);
+        assertThat(successfulEnrollments.size()).isEqualTo(30L);
         // 실패한 수강신청은 10명
         assertThat(failedEnrollments).isEqualTo(10L);
 
         // DB에 실제로 저장된 수강신청 내역도 30개인지 확인
         List<Enrollment> enrollments = enrollmentRepository.findByLectureId(1L);
-        assertThat(enrollments.size()).isEqualTo(30L);
+        assertThat(enrollments.size()).isEqualTo(30L);;
     }
-
 
 }

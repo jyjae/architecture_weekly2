@@ -26,24 +26,16 @@ public class EnrollmentJpaEntity {
 
     private Long userId;
 
-    private String lectureTitle;
-
-    private String lectureInstructor;
-
     @CreationTimestamp
     private LocalDateTime enrollmentDate;
 
     @Builder
     public EnrollmentJpaEntity(
             Long userId,
-            Long lectureId,
-            String lectureTitle,
-            String lectureInstructor
+            Long lectureId
     ) {
         this.userId = userId;
         this.lectureId = lectureId;
-        this.lectureTitle = lectureTitle;
-        this.lectureInstructor = lectureInstructor;
     }
 
     public static EnrollmentJpaEntity toEntity(
@@ -53,8 +45,6 @@ public class EnrollmentJpaEntity {
         return EnrollmentJpaEntity.builder()
                 .userId(user.getId())
                 .lectureId(lecture.getId())
-                .lectureTitle(lecture.getTitle())
-                .lectureInstructor(lecture.getInstructor())
                 .build();
     }
 }

@@ -4,7 +4,6 @@ import io.hhplus.architecture.application.enrollment.EnrollmentService;
 import io.hhplus.architecture.application.user.UserService;
 import io.hhplus.architecture.domain.enrollment.Enrollment;
 import io.hhplus.architecture.domain.lecture.Lecture;
-import io.hhplus.architecture.interfaces.api.lecture.FindAvailableLectureCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -49,4 +48,25 @@ public class LectureFacadeService {
 
         return availableLectures;
     }
+
+    /**
+     * 사용자의 수강신청 내역을 조회하는 메서드.
+     *
+     * @param command 수강신청 내역 조회에 필요한 userId를 포함하는 명령 객체.
+     * @return 사용자가 수강신청한 Enrollment 목록.
+     */
+    public List<Lecture> enrollmentsForUser(FindEnrollmentLectureCommand command) {
+
+        // userId로 사용자 존재 확인
+        userService.findById(command.userId());
+
+        // 사용자가 수강신청한 강의 목록 조회
+        List<Enrollment> enrollments = enrollmentService.findUserEnrolledLectures(command.userId());
+
+        return lectureService.findByIds(enrollments
+                .stream().
+                map(enrollment -> enrollment.getLectureId())
+                .collect(Collectors.toList()));
+    }
+
 }

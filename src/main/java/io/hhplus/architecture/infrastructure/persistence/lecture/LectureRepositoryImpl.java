@@ -47,11 +47,6 @@ public class LectureRepositoryImpl implements LectureRepository {
                 .collect(Collectors.toList());
     }
 
-    //테스트용
-    @Override
-    public void save(LectureJpaEntity lecture) {
-        lectureJpaRepository.save(lecture);
-    }
 
     /**
      * 강의 저장하는 메서드.
@@ -63,4 +58,22 @@ public class LectureRepositoryImpl implements LectureRepository {
     public void save(Lecture lecture) {
         lectureJpaRepository.save(lectureMapper.mapToJpaEntity(lecture));
     }
+
+    /**
+     * 강의 ID로 강의를 조회하는 메서드.
+     *
+     * @param lectureId 조회할 강의의 ID
+     * @return Lecture 도메인 객체. 강의가 없을 경우 null 반환.
+     */
+    @Override
+    public Lecture getByIdOrNull(Long lectureId) {
+        return lectureMapper.mapToDomainEntity(lectureJpaRepository.findOneById(lectureId));
+    }
+
+    //테스트용
+    @Override
+    public void save(LectureJpaEntity lecture) {
+        lectureJpaRepository.save(lecture);
+    }
+
 }

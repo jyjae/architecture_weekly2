@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LectureService {
@@ -65,5 +66,18 @@ public class LectureService {
     public void increaseEnrollmentCount(Lecture lecture) {
         lecture.increaseEnrollmentCount();
         lectureRepository.save(lecture);
+    }
+
+
+    /**
+     * 여러 강의 ID로 강의 목록 조회 메서드
+     *
+     * @param lectureIds 강의 ID
+     * @return 강의 도메인 객체
+     */
+    public List<Lecture> findByIds(List<Long> lectureIds) {
+        return lectureIds.stream()
+                .map(id -> lectureRepository.getByIdOrNull(id))
+                .collect(Collectors.toList());
     }
 }

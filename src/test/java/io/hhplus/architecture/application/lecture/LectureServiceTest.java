@@ -100,8 +100,6 @@ class LectureServiceTest {
                 Enrollment.generateEnrollment(
                         new Enrollment.UserId(1L),
                         new Enrollment.LectureId(1L),
-                        new Enrollment.LectureTitle("자료 구조"),
-                        new Enrollment.Instructor("홍길동"),
                         new Enrollment.EnrollmentDate(localDateTime))
         );
     }

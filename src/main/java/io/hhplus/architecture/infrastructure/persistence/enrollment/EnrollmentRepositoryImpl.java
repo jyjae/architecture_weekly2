@@ -77,10 +77,15 @@ public class EnrollmentRepositoryImpl implements EnrollmentRepository {
     }
 
     @Override
-    public List<Enrollment> findByLectureId(long lectureId) {
+    public List<Enrollment> findByLectureId(Long lectureId) {
         return enrollmentJpaRepository.findByLectureId(lectureId)
                 .stream()
                 .map(entity -> enrollmentMapper.mapToDomainEntity(entity))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Enrollment findByUserIdAndLectureId(Long userId, Long lectureId) {
+        return enrollmentMapper.mapToDomainEntity(enrollmentJpaRepository.findByUserIdAndLectureId(userId, lectureId));
     }
 }

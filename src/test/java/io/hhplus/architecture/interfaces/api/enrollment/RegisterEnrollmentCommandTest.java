@@ -1,5 +1,6 @@
 package io.hhplus.architecture.interfaces.api.enrollment;
 
+import io.hhplus.architecture.application.enrollment.RegisterEnrollmentCommand;
 import io.hhplus.architecture.exception.InvalidRequestException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

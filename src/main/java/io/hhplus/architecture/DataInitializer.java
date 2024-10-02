@@ -25,8 +25,8 @@
 //    @Transactional
 //    public void run(String... args) throws Exception {
 //        // Lecture 삽입
-//        LectureJpaEntity lecture1 = LectureJpaEntity.toEntity(null, "자바 기초", "자바 기초에대해서 배운다", "홍길동", 10L, LocalDateTime.now().plusDays(1));
-//        LectureJpaEntity lecture2 = LectureJpaEntity.toEntity(null, "스프링부트", "스프링부트 심화 과정", "링링링", 25L, LocalDateTime.now().plusDays(2));
+//        LectureJpaEntity lecture1 = LectureJpaEntity.toEntity(null, "자바 기초", "자바 기초에대해서 배운다", "홍길동", 10L, 30L, LocalDateTime.now().plusDays(1));
+//        LectureJpaEntity lecture2 = LectureJpaEntity.toEntity(null, "스프링부트", "스프링부트 심화 과정", "링링링", 25L, 30L, LocalDateTime.now().plusDays(2));
 //
 //        lectureRepository.save(lecture1);
 //        lectureRepository.save(lecture2);

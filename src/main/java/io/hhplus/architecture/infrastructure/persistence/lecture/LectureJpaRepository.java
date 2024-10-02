@@ -17,4 +17,5 @@ public interface LectureJpaRepository extends JpaRepository<LectureJpaEntity, Lo
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     Optional<LectureJpaEntity> findById(Long lectureId);
 
+    LectureJpaEntity findOneById(Long lectureId);
 }

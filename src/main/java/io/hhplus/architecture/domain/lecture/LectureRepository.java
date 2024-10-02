@@ -19,4 +19,6 @@ public interface LectureRepository {
     void save(LectureJpaEntity lecture);
 
     void save(Lecture lecture);
+
+    Lecture getByIdOrNull(Long lectureId);
 }
