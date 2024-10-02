@@ -1,9 +1,9 @@
-package io.hhplus.architecture.interfaces.api.enrollment;
+package io.hhplus.architecture.application.lecture;
 
 import io.hhplus.architecture.exception.InvalidRequestException;
 import lombok.Getter;
 
-public record FindEnrollmentLectureCommand(@Getter Long userId) {
+public record FindEnrollmentLectureCommand(Long userId) {
 
     public FindEnrollmentLectureCommand {
         if (userId == null || userId <= 0) {

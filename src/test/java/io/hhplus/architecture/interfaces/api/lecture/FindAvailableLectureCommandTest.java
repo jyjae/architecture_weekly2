@@ -1,5 +1,6 @@
 package io.hhplus.architecture.interfaces.api.lecture;
 
+import io.hhplus.architecture.application.lecture.FindAvailableLectureCommand;
 import io.hhplus.architecture.exception.InvalidRequestException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

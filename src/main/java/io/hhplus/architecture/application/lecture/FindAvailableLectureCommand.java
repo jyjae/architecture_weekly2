@@ -1,4 +1,4 @@
-package io.hhplus.architecture.interfaces.api.lecture;
+package io.hhplus.architecture.application.lecture;
 
 
 import io.hhplus.architecture.exception.InvalidRequestException;
@@ -6,7 +6,7 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-public record FindAvailableLectureCommand(@Getter Long userId, @Getter LocalDateTime startDate) {
+public record FindAvailableLectureCommand(Long userId, LocalDateTime startDate) {
 
     public FindAvailableLectureCommand {
         if (userId == null || userId <= 0) {

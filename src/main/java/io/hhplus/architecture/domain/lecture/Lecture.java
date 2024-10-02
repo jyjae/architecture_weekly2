@@ -15,6 +15,7 @@ public class Lecture {
     private String description;
     private String instructor;
     private Long enrollmentCount;
+    private Long capacity;
     private LocalDateTime startTime;
 
     public static Lecture generateLecture(
@@ -23,6 +24,7 @@ public class Lecture {
             Description description,
             Instructor instructor,
             EnrollmentCount enrollmentCount,
+            Capacity capacity,
             StartTime startTime) {
         return new Lecture(
                 id.getLectureId(),
@@ -30,6 +32,7 @@ public class Lecture {
                 description.getDescription(),
                 instructor.getInstructor(),
                 enrollmentCount.getEnrollmentCount(),
+                capacity.getCapacity(),
                 startTime.getStartTime()
         );
     }
@@ -103,6 +106,19 @@ public class Lecture {
         }
     }
 
+    // EnrollmentCount 클래스
+    @Value
+    public static class Capacity {
+        Long capacity;
+
+        public Capacity(Long value) {
+            if (value == null || value < 0) {
+                throw new DomainValidationException("수강신청 수용량은 0 이상이어야 합니다.");
+            }
+            this.capacity = value;
+        }
+    }
+
     // StartTime 클래스
     @Value
     public static class StartTime {
@@ -118,6 +134,6 @@ public class Lecture {
 
     // 수강 인원이 30명 이하인지 체크하는 도메인 규칙
     public boolean isAvailableForEnrollment() {
-        return this.enrollmentCount < 30L;
+        return this.enrollmentCount < capacity;
     }
 }

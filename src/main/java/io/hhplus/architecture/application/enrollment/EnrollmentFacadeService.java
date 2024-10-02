@@ -5,14 +5,10 @@ import io.hhplus.architecture.application.user.UserService;
 import io.hhplus.architecture.domain.enrollment.Enrollment;
 import io.hhplus.architecture.domain.lecture.Lecture;
 import io.hhplus.architecture.domain.user.User;
-import io.hhplus.architecture.interfaces.api.enrollment.FindEnrollmentLectureCommand;
-import io.hhplus.architecture.interfaces.api.enrollment.RegisterEnrollmentCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Component
 public class EnrollmentFacadeService {
@@ -42,37 +38,20 @@ public class EnrollmentFacadeService {
     @Transactional
     public Enrollment enrollment(RegisterEnrollmentCommand command) {
 
-        // userId로 사용자 조회
-        User user = userService.findById(command.getUserId());
-
         // lectureId로 강의 조회
-        Lecture lecture = lectureService.findById(command.getLectureId());
+        Lecture lecture = lectureService.findByIdWithLock(command.lectureId());
+
+        // userId로 사용자 조회
+        User user = userService.findById(command.userId());
 
         // 수강신청 처리
         Enrollment enrollment = enrollmentService.enrollment(user, lecture);
 
-        // 수강 인원 증가
-        lecture.increaseEnrollmentCount();
+        lectureService.increaseEnrollmentCount(lecture);
         logger.info("Enrollment count increased for lectureId: {}. Current count: {}", lecture.getId(), lecture.getEnrollmentCount());
 
         return enrollment;
     }
 
-    /**
-     * 사용자의 수강신청 내역을 조회하는 메서드.
-     *
-     * @param command 수강신청 내역 조회에 필요한 userId를 포함하는 명령 객체.
-     * @return 사용자가 수강신청한 Enrollment 목록.
-     */
-    public List<Enrollment> enrollmentsForUser(FindEnrollmentLectureCommand command) {
-
-        // userId로 사용자 존재 확인
-        userService.findById(command.getUserId());
-
-        // 사용자가 수강신청한 강의 목록 조회
-        List<Enrollment> enrollments = enrollmentService.findUserEnrolledLectures(command.userId());
-
-        return enrollments;
-    }
 
 }

@@ -1,10 +1,9 @@
 package io.hhplus.architecture.interfaces.api.lecture;
 
+import io.hhplus.architecture.application.lecture.FindAvailableLectureCommand;
+import io.hhplus.architecture.application.lecture.FindEnrollmentLectureCommand;
 import io.hhplus.architecture.application.lecture.LectureFacadeService;
-import io.hhplus.architecture.domain.enrollment.Enrollment;
 import io.hhplus.architecture.domain.lecture.Lecture;
-import io.hhplus.architecture.interfaces.api.enrollment.EnrollmentController;
-import io.hhplus.architecture.interfaces.api.enrollment.FindEnrollmentLectureCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +40,19 @@ public class LectureController {
             ) {
         log.info("Enrolled lecture with UserID: {}, StartTime: {}", userId, startTime);
         return ResponseEntity.ok(lectureFacadeService.findAvailableLecturesForUser(new FindAvailableLectureCommand(userId, startTime)));
+    }
+
+    /**
+     * 유저가 수강신청한 강의 목록 조회 API
+     * @param userId - 유저 ID
+     * @return - 수강신청 ResponseEntity
+     */
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<Lecture>> enrollment(
+            @PathVariable Long userId
+    ) {
+        log.info("Enrolled lecture with UserID: {}, LectureID: {}", userId);
+        return ResponseEntity.ok(lectureFacadeService.enrollmentsForUser(new FindEnrollmentLectureCommand(userId)));
     }
 
 }

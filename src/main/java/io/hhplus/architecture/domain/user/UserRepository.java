@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface UserRepository {
 
-    public Optional<User> findById(Long userId);
+    Optional<User> findById(Long userId);
 
     void save(UserJpaEntity user2);
 }

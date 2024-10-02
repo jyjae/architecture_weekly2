@@ -20,10 +20,11 @@ class LectureTest {
         Lecture.Description description = new Lecture.Description("자바에 대해서 배운다.");
         Lecture.Instructor instructor = new Lecture.Instructor("홍길동");
         Lecture.EnrollmentCount enrollmentCount = new Lecture.EnrollmentCount(10L);
+        Lecture.Capacity capacity = new Lecture.Capacity(30L);
         Lecture.StartTime startTime = new Lecture.StartTime(LocalDateTime.now().plusDays(1));
 
         // When
-        Lecture lecture = Lecture.generateLecture(lectureId, title, description, instructor, enrollmentCount, startTime);
+        Lecture lecture = Lecture.generateLecture(lectureId, title, description, instructor, enrollmentCount, capacity, startTime);
 
         // Then
         assertThat(lecture.getId()).isEqualTo(1L);
@@ -63,10 +64,11 @@ class LectureTest {
         Lecture.Description description = new Lecture.Description("Learn Java");
         Lecture.Instructor instructor = new Lecture.Instructor("John Doe");
         Lecture.EnrollmentCount enrollmentCount = new Lecture.EnrollmentCount(10L);
+        Lecture.Capacity capacity = new Lecture.Capacity(30L);
         Lecture.StartTime startTime = new Lecture.StartTime(LocalDateTime.now().plusDays(1));
 
         // When
-        Lecture lecture = Lecture.generateLecture(lectureId, title, description, instructor, enrollmentCount, startTime);
+        Lecture lecture = Lecture.generateLecture(lectureId, title, description, instructor, enrollmentCount, capacity, startTime);
 
         // When
         boolean available = lecture.isAvailableForEnrollment();
