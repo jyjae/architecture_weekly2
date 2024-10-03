@@ -42,7 +42,7 @@ public class LectureRepositoryImpl implements LectureRepository {
     @Override
     public List<Lecture> findAvailableLecturesByInIds(List<Long> lectureIds, LocalDateTime startDate) {
         // 강의 ID 목록과 시작 시간을 기준으로 강의 엔티티를 조회한 후 도메인 객체로 변환
-        return lectureJpaRepository.findByIdNotInAndStartTimeAfter(lectureIds, startDate).stream()
+        return lectureJpaRepository.findByIdNotInAndStartTimeEquals(lectureIds, startDate).stream()
                 .map(entity -> lectureMapper.mapToDomainEntity(entity))
                 .collect(Collectors.toList());
     }
