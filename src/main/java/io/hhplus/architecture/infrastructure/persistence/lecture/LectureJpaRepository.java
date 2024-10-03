@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface LectureJpaRepository extends JpaRepository<LectureJpaEntity, Long> {
-    @Query("SELECT l FROM LectureJpaEntity l WHERE (:lectureIds IS NULL OR l.id NOT IN :lectureIds) AND l.startTime > :startTime")
-    List<LectureJpaEntity> findByIdNotInAndStartTimeAfter(@Param("lectureIds") List<Long> lectureIds, @Param("startTime") LocalDateTime startTime);
+    @Query("SELECT l FROM LectureJpaEntity l WHERE (:lectureIds IS NULL OR l.id NOT IN :lectureIds) AND l.startTime = :startTime")
+    List<LectureJpaEntity> findByIdNotInAndStartTimeEquals(@Param("lectureIds") List<Long> lectureIds, @Param("startTime") LocalDateTime startTime);
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     Optional<LectureJpaEntity> findById(Long lectureId);
