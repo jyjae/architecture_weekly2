@@ -2,6 +2,7 @@ package io.hhplus.architecture.application.lecture;
 
 import io.hhplus.architecture.domain.enrollment.Enrollment;
 import io.hhplus.architecture.domain.lecture.Lecture;
+import io.hhplus.architecture.exception.NotFoundException;
 import io.hhplus.architecture.infrastructure.persistence.lecture.LectureRepositoryImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,6 +19,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;  // AssertJ
 import static org.mockito.Mockito.when;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ExtendWith(MockitoExtension.class)
 class LectureServiceTest {
@@ -131,4 +133,17 @@ class LectureServiceTest {
         assertThat(availableLectures.size()).isEqualTo(0L);
     }
 
+    @DisplayName("강의가 존재하지 않은 경우 예외 발생")
+    @Test
+    void shouldFailWhenLectureNotFound() {
+        // Given
+
+        when(lectureRepository.findById(1L)).thenReturn(Optional.empty());
+        // When
+
+        // Then
+        assertThatThrownBy(() -> lectureService.findByIdWithLock(1L))
+                .isInstanceOf(NotFoundException.class)
+                .hasMessage("강의가 존재하지 않습니다.");
+    }
 }
